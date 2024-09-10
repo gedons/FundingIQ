@@ -169,13 +169,23 @@
                         </div>
                         <div class="menu-right-content">
                             @if (Auth::check())
-                            <div class="clients-box">
-                                <div class="icon-box"><img src="assets/images/icons/icon-31.png" alt=""></div>
-                                <a href="{{ url('/home') }}">Client Portal<i class="flaticon-right-down"></i></a>
-                            </div>
+                                <div class="clients-box">
+                                    <div class="icon-box">
+                                        <img src="assets/images/icons/icon-31.png" alt="">
+                                    </div>
+                                    @if (Auth::user()->role === 'admin')
+                                        <a href="{{ url('/admin/dashboard') }}">Admin Dashboard<i class="flaticon-right-down"></i></a>
+                                    @elseif (Auth::user()->role === 'trader')
+                                        <a href="{{ url('/trader/dashboard') }}">Trader Dashboard<i class="flaticon-right-down"></i></a>
+                                    @else
+                                        <a href="{{ url('/home') }}">Client Portal<i class="flaticon-right-down"></i></a>
+                                    @endif
+                                </div>
                             @else
-                            <div class="btn-box"><a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a></div>
-                            @endif
+                                <div class="btn-box">
+                                    <a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a>
+                                </div>
+                            @endif                        
                         </div>
                     </div>
                 </div>
@@ -196,12 +206,22 @@
                         <div class="menu-right-content">
                             @if (Auth::check())
                             <div class="clients-box">
-                                <div class="icon-box"><img src="assets/images/icons/icon-31.png" alt=""></div>
-                                <a href="{{ url('/dashboard') }}">Client Portal<i class="flaticon-right-down"></i></a>
-                            </div>
+                                <div class="icon-box">
+                                    <img src="assets/images/icons/icon-31.png" alt="">
+                                </div>
+                                @if (Auth::user()->role === 'admin')
+                                    <a href="{{ url('/admin/dashboard') }}">Admin Dashboard<i class="flaticon-right-down"></i></a>
+                                @elseif (Auth::user()->role === 'trader')
+                                    <a href="{{ url('/trader/dashboard') }}">Trader Dashboard<i class="flaticon-right-down"></i></a>
+                                @else
+                                    <a href="{{ url('/home') }}">Client Portal<i class="flaticon-right-down"></i></a>
+                                @endif
+                                </div>
                             @else
-                            <div class="btn-box"><a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a></div>
-                            @endif
+                                <div class="btn-box">
+                                    <a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a>
+                                </div>
+                            @endif                        
                         </div>
                     </div>
                 </div>
@@ -686,7 +706,7 @@
         </section>
         <!-- location-section end -->
 
-        <!-- pricing-style-two -->
+        <!-- trade-style-two -->
         <section class="pricing-style-two bg-color-2 sec-pad">
             <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-12.png);"></div>
             <div class="auto-container">
@@ -1423,7 +1443,7 @@
                 </div>
             </div>
         </section>
-        <!-- pricing-style-two end -->
+        <!-- trade-style-two end -->
 
         <!-- clients-style-two -->
         <section class="clients-style-two centred">
