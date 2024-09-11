@@ -30,7 +30,7 @@
         overflow: hidden;
         white-space: nowrap;
         box-sizing: border-box;
-        animation: marquee 15s linear infinite;
+        animation: marquee 30s linear infinite;
     }
 
     @keyframes marquee {
@@ -41,6 +41,18 @@
     .marquee span {
         display: inline-block;
         padding-right: 50px;
+    }
+
+    .price-change {
+        font-weight: bold;
+    }
+
+    .price-change.rise {
+        color: green; /* Green for rise */
+    }
+
+    .price-change.fall {
+        color: red; /* Red for fall */
     }
 
     .popup {
@@ -64,7 +76,6 @@
     }
 </style>
 </head>
-
 
 <!-- page wrapper -->
 <body>
@@ -185,7 +196,7 @@
                                 <div class="btn-box">
                                     <a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a>
                                 </div>
-                            @endif                        
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -221,7 +232,7 @@
                                 <div class="btn-box">
                                     <a href="/register" class="theme-btn btn-one"><span>Open an A/c</span></a>
                                 </div>
-                            @endif                        
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -405,103 +416,63 @@
             <div class="auto-container">
                 <div class="title-box">
                     <div class="sec-title light">
-                        <span class="sub-title">Trading</span>
-                        <h2>Top <span>Pricing</span> List in Market</h2>
+                        <h2>Top <span>Currency</span> Rates</h2>
                     </div>
-                    {{-- <div class="chat-box">
-                        <figure class="thumb-box"><img src="assets/images/resource/chat-1.jpg" alt=""></figure>
-                        <div class="link-box"><a href="contact.html"><span>Live Chat With <br />Expert</span></a></div>
-                    </div> --}}
                 </div>
-                <div class="row  clearfix marquee bg-light p-2">
-                    <div class="col-lg-3 col-md-6 col-sm-12 pricing-block">
-                        <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="currency-box">
-                                    <ul class="list-item">
-                                        <li><img src="assets/images/icons/flag-1.png" alt="">eur</li>
-                                        <li><img src="assets/images/icons/flag-2.png" alt="">usd</li>
-                                    </ul>
-                                </div>
-                                <div class="content-box">
-                                    <ul class="list-item clearfix">
-                                        <li>Sell<span>Buy</span></li>
-                                        <li class="red">$1.06199<span class="yellow">$1.06185</span></li>
-                                        <li>Spread <br /><span class="green">-0.14</span><a href="#">Trade</a></li>
-                                    </ul>
-                                </div>
-                                <div class="graph-box">
-                                    <div class="graph"><img src="assets/images/icons/graph-1.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pricing-block">
-                        <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="currency-box">
-                                    <ul class="list-item">
-                                        <li><img src="assets/images/icons/flag-2.png" alt="">usd</li>
-                                        <li><img src="assets/images/icons/flag-3.png" alt="">jpy</li>
-                                    </ul>
-                                </div>
-                                <div class="content-box">
-                                    <ul class="list-item clearfix">
-                                        <li>Sell<span>Buy</span></li>
-                                        <li class="yellow">$1.22195<span class="red">$1.22199</span></li>
-                                        <li>Spread <br /><span class="green">+0.04</span><a href="#">Trade</a></li>
-                                    </ul>
-                                </div>
-                                <div class="graph-box">
-                                    <div class="graph"><img src="assets/images/icons/graph-2.png" alt=""></div>
+                <div class="row clearfix marquee p-2">
+                        {{-- @foreach($cryptos['RAW'] as $symbol => $data)
+                            @php
+                                // Calculate the price change percentage
+                                $priceChange = $data['USD']['CHANGE24HOUR'];
+                                $priceChangeClass = $priceChange >= 0 ? 'rise' : 'fall';
+                            @endphp
+                            <div class="col-lg-3 col-md-6 col-sm-12 pricing-block" style="height: 100px">
+                                <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                                    <div class="inner-box">
+                                        <div class="content-box">
+                                            <ul class="list-item clearfix">
+                                                <li>{{ $symbol }} <br />
+                                                    <span class="price-change {{ $priceChangeClass }}">
+                                                        {{ number_format($priceChange, 1) }}
+                                                    </span>
+                                                </li>
+                                                <li>${{ number_format($data['USD']['PRICE'], 2) }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pricing-block">
-                        <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="currency-box">
-                                    <ul class="list-item">
-                                        <li><img src="assets/images/icons/flag-4.png" alt="">gbp</li>
-                                        <li><img src="assets/images/icons/flag-2.png" alt="">usd</li>
-                                    </ul>
+                        @endforeach                                       --}}
+                        {{-- <div class="row clearfix">
+                            @foreach($cryptos['RAW'] as $symbol => $data)
+                                @php
+                                    // Calculate the price change percentage
+                                    $priceChange = $data['USD']['CHANGE24HOUR'];
+                                    $priceChangeClass = $priceChange >= 0 ? 'rise' : 'fall';
+
+                                    // Get the image URL from the coin list
+                                    $imageUrl = 'https://www.cryptocompare.com' . $coinList['Data'][$symbol]['ImageUrl'];
+                                @endphp
+                                <div class="col-lg-3 col-md-6 col-sm-12 pricing-block" style="height: 100px">
+                                    <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                                        <div class="inner-box">
+                                            <div class="content-box">
+                                                <ul class="list-item clearfix">
+                                                    <li>
+                                                        <img src="{{ $imageUrl }}" alt="{{ $symbol }} logo" style="width: 30px; height: 30px; vertical-align: middle;">
+                                                        {{ $symbol }} <br />
+                                                        <span class="price-change {{ $priceChangeClass }}">
+                                                            {{ number_format($priceChange, 1) }}
+                                                        </span>
+                                                    </li>
+                                                    <li>${{ number_format($data['USD']['PRICE'], 2) }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="content-box">
-                                    <ul class="list-item clearfix">
-                                        <li>Sell<span>Buy</span></li>
-                                        <li class="yellow">$0.65982<span class="red">$0.65994</span></li>
-                                        <li>Spread <br /><span class="green">+0.12</span><a href="#">Trade</a></li>
-                                    </ul>
-                                </div>
-                                <div class="graph-box">
-                                    <div class="graph"><img src="assets/images/icons/graph-3.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pricing-block">
-                        <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="currency-box">
-                                    <ul class="list-item">
-                                        <li><img src="assets/images/icons/flag-5.png" alt="">aud</li>
-                                        <li><img src="assets/images/icons/flag-2.png" alt="">cad</li>
-                                    </ul>
-                                </div>
-                                <div class="content-box">
-                                    <ul class="list-item clearfix">
-                                        <li>Sell<span>Buy</span></li>
-                                        <li class="red">$14.785<span class="yellow">$13.625</span></li>
-                                        <li>Spread <br /><span class="green">-0.14</span><a href="#">Trade</a></li>
-                                    </ul>
-                                </div>
-                                <div class="graph-box">
-                                    <div class="graph"><img src="assets/images/icons/graph-4.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            @endforeach
+                        </div> --}}
                 </div>
             </div>
         </section>
