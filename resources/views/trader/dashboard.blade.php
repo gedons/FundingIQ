@@ -35,23 +35,23 @@
 }
 </style>
 
-    <!-- Marquee Section -->
-    <div class="marquee" style="background-color: #3b4b3b; color: white; padding: 10px 0;">
-        <div class="marquee-content">
-            @if(isset($cryptos['RAW']))
-                @foreach($cryptos['RAW'] as $symbol => $data)
-                    <span>{{ $symbol }}/USD: ${{ number_format($data['USD']['PRICE'], 2) }} &nbsp;&nbsp;&nbsp;</span>
-                @endforeach
-            @else
-                <span>No data available.</span>
-            @endif
+        <!-- Marquee Section -->
+        <div class="marquee" style="background-color: #3b4b3b; color: white; padding: 10px 0;">
+            <div class="marquee-content">
+                @if(isset($cryptos['RAW']))
+                    @foreach($cryptos['RAW'] as $symbol => $data)
+                        <span>{{ $symbol }}/USD: ${{ number_format($data['USD']['PRICE'], 2) }} &nbsp;&nbsp;&nbsp;</span>
+                    @endforeach
+                @else
+                    <span>No data available.</span>
+                @endif
+            </div>
         </div>
-    </div>
 
 
         <div class="container-fluid">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
-                <h1 class="mb-2 mb-md-0 mt-2">Dashboard</h1>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 mt-3">
+                <h1 class="mb-2 mb-md-0">Dashboard</h1>
                 <div>
                     <a href="#" class="btn btn-custom-primary">Trade</a>
                     <a href="#" class="btn btn-custom-primary">Fund Wallet</a>
