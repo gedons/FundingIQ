@@ -33,7 +33,21 @@ class DashboardController extends Controller
     }
 
     public function fund(){
-        return view('trader.fund');
+
+        $apiKey = env('CRYPTOCOMPARE_API_KEY');
+
+        $response = Http::withOptions(['verify' => false, 'timeout' => 30])
+        ->withHeaders([
+            'Authorization' => 'Apikey ' . $apiKey,
+        ])
+        ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
+            'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
+            'tsyms' => 'USD',
+        ]);
+
+        $cryptos = $response->json();
+
+        return view('trader.fund', compact('cryptos'));
     }
 
     public function withdraw(){
