@@ -151,9 +151,20 @@
                                             </td>
                                             <td>${{ number_format($confirm_transaction->charge, 2) }}</td>
                                             <td>{{ $confirm_transaction->transaction_date }}</td>
-                                            <td>
-                                                <a href="{{ route('trader.fund.confirm', $confirm_transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
-                                            </td>
+
+                                            @if($confirm_transaction->status == 'requested')
+                                                <td>
+                                                    <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Requested</a>
+                                                </td>
+                                            @elseif($confirm_transaction->status == 'pending')
+                                                <td>
+                                                    <a href="{{ route('trader.fund.confirm', $confirm_transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Approved</a>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @empty
                                         <tr>

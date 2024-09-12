@@ -89,7 +89,7 @@
 
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card d-flex flex-row justify-content-between align-items-center p-3">
-                        <div class="price"><b>Balance</b>: $4000</div>
+                        <div class="price"><b>Balance</b>: ${{ number_format(Auth::user()->balance, 2) }}</div>
                         <div>
                             <svg fill="#3b4b3b" width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M22,7H19V4a1,1,0,0,0-1-1H2A1,1,0,0,0,1,4V16a1,1,0,0,0,1,1H5v3a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1V8A1,1,0,0,0,22,7ZM3,15V5H17V15H3Zm18,4H7V17H18a1,1,0,0,0,1-1V9h2Zm-9-9a2,2,0,1,1-2-2A2,2,0,0,1,12,10ZM7,10a1,1,0,0,1-1,1H5A1,1,0,0,1,5,9H6A1,1,0,0,1,7,10Zm9,0a1,1,0,0,1-1,1H14a1,1,0,0,1,0-2h1A1,1,0,0,1,16,10Z"></path></g></svg>
                         </div>
