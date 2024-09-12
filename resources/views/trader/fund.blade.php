@@ -51,20 +51,24 @@
     <div class="container-fluid">
         <h1 class="mt-3">Fund Account</h1>
 
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
         <div class="row mt-4">
-            <!-- Left Card: Fund Account Form -->
-            <div class="col-12 col-lg-6 mb-4">
+            <div class="col-12 col-lg-4 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Fund Your Account</h5>
-                        <form>
+                        <form method="POST" action="{{ route('trader.fund.store') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="amount" class="form-label">Amount (USD)</label>
-                                <input type="number" class="form-control" id="amount" placeholder="Enter amount" required>
+                                <input type="number" class="form-control" step="0.01" name="amount" id="amount" placeholder="Enter amount" required>
                             </div>
                             <div class="mb-3">
-                                <label for="paymentMethod" class="form-label">Choose a Payment Method</label>
-                                <select class="form-select" id="paymentMethod" required>
+                                <label for="method" class="form-label">Choose a Payment Method</label>
+                                <select class="form-select" id="method" name="method" required>
                                     <option value="" disabled selected>Select payment method</option>
                                     <option value="btc">Bitcoin (BTC)</option>
                                     <option value="eth">Ethereum (ETH)</option>
@@ -77,35 +81,55 @@
                 </div>
             </div>
 
-            <!-- Right Card: Transaction Histories -->
-            <div class="col-12 col-lg-6 mb-4">
+            <div class="col-12 col-lg-8 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transaction Histories</h5>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Amount</th>
-                                    <th>Method</th>
-                                    <th>Status</th>
-                                    <th>Charge</th>
-                                    <th>Transaction Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>$1000.00</td>
-                                    <td>Bitcoin (BTC)</td>
-                                    <td><span class="badge bg-warning text-dark">PENDING</span></td>
-                                    <td>$100.00</td>
-                                    <td>2024-09-11 11:10:34</td>
-                                </tr>
-                                <!-- Add more transaction history items here -->
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Method</th>
+                                        <th>Status</th>
+                                        <th>Charge</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($transactions as $transaction)
+                                    <tr>
+                                        <td>${{ number_format($transaction->amount, 2) }}</td>
+                                        <td>{{ strtoupper($transaction->method) }}</td>
+                                        <td>
+                                            @if($transaction->status == 'pending')
+                                                <span class="badge bg-warning text-dark">PENDING</span>
+                                            @elseif($transaction->status == 'requested')
+                                                <span class="badge bg-info text-dark">REQUESTED</span>
+                                            @elseif($transaction->status == 'approved')
+                                                <span class="badge bg-success text-white">APPROVED</span>
+                                            @endif
+                                        </td>
+                                        <td>${{ number_format($transaction->charge, 2) }}</td>
+                                        <td>{{ $transaction->transaction_date }}</td>
+                                        <td><a href="{{ route('trader.fund.confirm', $transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a></td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6">No transactions found.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div> <!-- End of table-responsive -->
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+
+
+        </div>
         </div>
     </div>
 @endsection

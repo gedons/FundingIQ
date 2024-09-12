@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Trader;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Transaction;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -29,7 +31,20 @@ class DashboardController extends Controller
     }
 
     public function profile(){
-        return view('trader.profile');
+
+        $apiKey = env('CRYPTOCOMPARE_API_KEY');
+
+        $response = Http::withOptions(['verify' => false, 'timeout' => 30])
+        ->withHeaders([
+            'Authorization' => 'Apikey ' . $apiKey,
+        ])
+        ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
+            'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
+            'tsyms' => 'USD',
+        ]);
+        $cryptos = $response->json();
+        
+        return view('trader.profile', compact('cryptos'));
     }
 
     public function fund(){
@@ -44,21 +59,58 @@ class DashboardController extends Controller
             'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
             'tsyms' => 'USD',
         ]);
-
         $cryptos = $response->json();
 
-        return view('trader.fund', compact('cryptos'));
+        $transactions = Auth::user()->transactions()->orderBy('transaction_date', 'desc')->get();
+
+        return view('trader.fund', compact('cryptos','transactions'));
     }
 
     public function withdraw(){
-        return view('trader.withdraw');
+        $apiKey = env('CRYPTOCOMPARE_API_KEY');
+
+        $response = Http::withOptions(['verify' => false, 'timeout' => 30])
+        ->withHeaders([
+            'Authorization' => 'Apikey ' . $apiKey,
+        ])
+        ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
+            'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
+            'tsyms' => 'USD',
+        ]);
+        $cryptos = $response->json();
+
+        return view('trader.withdraw',  compact('cryptos'));
     }
 
     public function upload(){
-        return view('trader.upload');
+        $apiKey = env('CRYPTOCOMPARE_API_KEY');
+
+        $response = Http::withOptions(['verify' => false, 'timeout' => 30])
+        ->withHeaders([
+            'Authorization' => 'Apikey ' . $apiKey,
+        ])
+        ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
+            'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
+            'tsyms' => 'USD',
+        ]);
+        $cryptos = $response->json();
+
+        return view('trader.upload', compact('cryptos'));
     }
 
     public function trade(){
-        return view('trader.trade');
+        $apiKey = env('CRYPTOCOMPARE_API_KEY');
+
+        $response = Http::withOptions(['verify' => false, 'timeout' => 30])
+        ->withHeaders([
+            'Authorization' => 'Apikey ' . $apiKey,
+        ])
+        ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
+            'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
+            'tsyms' => 'USD',
+        ]);
+        $cryptos = $response->json();
+
+        return view('trader.trade', compact('cryptos'));
     }
 }
