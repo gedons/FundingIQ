@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\Trader\DashboardController;
 use App\Http\Controllers\Trader\FundingController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 // Authentication routes
 Auth::routes();
@@ -14,10 +15,6 @@ Route::get('/random-popup', [PopupController::class, 'randomPopup']);
 
 // User role-based redirection routes
 Route::middleware('auth')->group(function () {
-
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard')->middleware('role:admin');
 
 
     // traders route
@@ -34,8 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/trader/fund/confirm/{id}/upload', [FundingController::class, 'uploadProofOfPayment'])->name('trader.fund.upload_proof')->middleware('role:trader');
 
 
-
-
-
+    //admin route
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard')->middleware('role:admin');
+    Route::get('/admin/users', [AdminDashboardController::class, 'users'])->name('admin.users')->middleware('role:admin');
+    Route::get('/admin/transactions', [AdminDashboardController::class, 'transactions'])->name('admin.transactions')->middleware('role:admin');
+    Route::get('/admin/withdrawals', [AdminDashboardController::class, 'withdrawals'])->name('admin.withdrawals')->middleware('role:admin');
+    Route::get('/admin/trades', [AdminDashboardController::class, 'trades'])->name('admin.trades')->middleware('role:admin');
+    Route::get('/admin/kyc', [AdminDashboardController::class, 'kyc'])->name('admin.kyc')->middleware('role:admin');
 
 });
