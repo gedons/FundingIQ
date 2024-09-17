@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Transaction;
+use App\Models\User;
 use Auth;
 
 class DashboardController extends Controller
@@ -24,9 +25,10 @@ class DashboardController extends Controller
          ]);
 
          $cryptos = $response->json();
+         $user = Auth::user();
+         $withdrawals = auth()->user()->transactions()->get();
 
-
-        return view('trader.dashboard', compact('cryptos'));
+        return view('trader.dashboard', compact('cryptos','user','withdrawals'));
 
     }
 
@@ -43,8 +45,10 @@ class DashboardController extends Controller
             'tsyms' => 'USD',
         ]);
         $cryptos = $response->json();
-        
-        return view('trader.profile', compact('cryptos'));
+
+        $trader = Auth::user();
+
+        return view('trader.profile', compact('cryptos','trader'));
     }
 
     public function fund(){

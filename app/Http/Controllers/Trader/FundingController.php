@@ -19,6 +19,7 @@ class FundingController extends Controller
         $request->validate([
             'amount' => 'required|numeric|min:0.01',
             'method' => 'required|in:btc,eth,usdt',
+            'transaction_type' => 'required|string|in:funding,withdrawal',
         ]);
 
         // Create the transaction with pending status
@@ -27,6 +28,7 @@ class FundingController extends Controller
             'amount' => $request->input('amount'),
             'method' => $request->input('method'),
             'status' => 'pending',
+            'transaction_type' => $request->transaction_type,
             'charge' => $this->calculateCharge($request->input('amount')),
         ]);
 

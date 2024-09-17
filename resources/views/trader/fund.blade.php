@@ -65,6 +65,7 @@
                             <div class="mb-3">
                                 <label for="amount" class="form-label">Amount (USD)</label>
                                 <input type="number" class="form-control" step="0.01" name="amount" id="amount" placeholder="Enter amount" required>
+                                <input type="hidden" name="transaction_type" value="funding">
                             </div>
                             <div class="mb-3">
                                 <label for="method" class="form-label">Choose a Payment Method</label>
@@ -86,11 +87,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Transaction Histories</h5>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Amount</th>
                                         <th>Method</th>
+                                        <th>Type</th>
                                         <th>Status</th>
                                         <th>Charge</th>
                                         <th>Date</th>
@@ -101,11 +103,14 @@
                                     <tr>
                                         <td>${{ number_format($transaction->amount, 2) }}</td>
                                         <td>{{ strtoupper($transaction->method) }}</td>
+                                        <td>{{ ucfirst($transaction->transaction_type) }}</td>
                                         <td>
                                             @if($transaction->status == 'pending')
                                                 <span class="badge bg-warning text-dark">PENDING</span>
                                             @elseif($transaction->status == 'requested')
                                                 <span class="badge bg-info text-dark">REQUESTED</span>
+                                            @elseif($transaction->status == 'rejected')
+                                                <span class="badge bg-danger text-white">REJECTED</span>
                                             @elseif($transaction->status == 'approved')
                                                 <span class="badge bg-success text-white">APPROVED</span>
                                             @endif
@@ -113,19 +118,19 @@
                                         <td>${{ number_format($transaction->charge, 2) }}</td>
                                         <td>{{ $transaction->transaction_date }}</td>
 
-                                        @if($transaction->status == 'requested')
                                         <td>
-                                            <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Requested</a>
-                                            </td>
-                                        @elseif($transaction->status == 'pending')
-                                            <td>
-                                                <a href="{{ route('trader.fund.confirm', $transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
-                                            </td>
-                                        @else
-                                            <td>
+                                            @if($transaction->status == 'requested')
+                                                <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Requested</a>
+                                            @elseif($transaction->status == 'pending')
+                                                @if($transaction->transaction_type != 'withdrawal')
+                                                    <a href="{{ route('trader.fund.confirm', $transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
+                                                @endif
+                                            @elseif($transaction->status == 'rejected')
+                                               <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Rejected</a>
+                                            @else
                                                 <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Approved</a>
-                                            </td>
-                                        @endif
+                                            @endif
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>

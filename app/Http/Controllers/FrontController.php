@@ -9,28 +9,27 @@ class FrontController extends Controller
 {
     public function index()
     {
-        //  $apiKey = env('CRYPTOCOMPARE_API_KEY');
-
-        //  $response = Http::withOptions(['verify' => false])
-        //  ->withHeaders([
-        //      'Authorization' => 'Apikey ' . $apiKey,
-        //  ])
-        //  ->get('https://min-api.cryptocompare.com/data/pricemultifull', [
-        //      'fsyms' => 'BTC,ETH,LTC,XRP,DOGE,USDT,BUSD,SOL',
-        //      'tsyms' => 'USD',
-        //  ]);
-
-        //  $cryptos = $response->json();
-
-        //  $coinListResponse = Http::withOptions(['verify' => false])
-        //  ->withHeaders([
-        //     'Authorization' => 'Apikey ' . $apiKey,
-        // ])->get('https://min-api.cryptocompare.com/data/all/coinlist');
-
-        // $coinList = $coinListResponse->json();
-
-        // return view('front.index', compact('cryptos', 'coinList'));
         return view('front.index');
+    }
+
+    public function about(){
+        return view('front.about');
+    }
+
+    public function plans(){
+        return view('front.plans');
+    }
+
+    public function faq(){
+        return view('front.faq');
+    }
+
+    public function legal(){
+        return view('front.legal');
+    }
+
+    public function contact(){
+        return view('front.contact');
     }
 
 

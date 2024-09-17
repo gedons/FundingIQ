@@ -141,16 +141,11 @@
                 Transactions
             </a>
             <hr>
-            <a href="{{ route('admin.withdrawals') }}">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23 4C23 2.34315 21.6569 1 20 1H4C2.34315 1 1 2.34315 1 4V14C1 15.6569 2.34315 17 4 17H5C5.55228 17 6 16.5523 6 16C6 15.4477 5.55228 15 5 15H4C3.44772 15 3 14.5523 3 14L3 8H21V14C21 14.5523 20.5523 15 20 15H19C18.4477 15 18 15.4477 18 16C18 16.5523 18.4477 17 19 17H20C21.6569 17 23 15.6569 23 14V4ZM21 6V4C21 3.44772 20.5523 3 20 3H4C3.44772 3 3 3.44771 3 4V6H21Z" fill="#ffffff"></path> <path d="M13 22C13 22.5523 12.5523 23 12 23C11.4477 23 11 22.5523 11 22L11 16.4069L9.70714 17.6996C9.31657 18.0903 8.68346 18.0903 8.29289 17.6996C7.90239 17.3093 7.90239 16.676 8.29289 16.2856L11.2924 13.2923C11.683 12.9024 12.3156 12.9028 12.7059 13.293L15.705 16.2922C16.0956 16.6828 16.0956 17.3159 15.705 17.7065C15.3145 18.0969 14.6813 18.0969 14.2908 17.7065L13 16.4157L13 22Z" fill="#ffffff"></path> </g></svg>
-                Withdrawals
-            </a>
-            <hr>
-            <a href="{{ route('admin.trades') }}">
+            {{-- <a href="{{ route('admin.trades') }}">
                 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21V11M12 11L9 14M12 11L15 14M7 16.8184C4.69636 16.2074 3 14.1246 3 11.6493C3 9.20008 4.8 6.9375 7.5 6.5C8.34694 4.48637 10.3514 3 12.6893 3C15.684 3 18.1317 5.32251 18.3 8.25C19.8893 8.94488 21 10.6503 21 12.4969C21 14.8148 19.25 16.7236 17 16.9725" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 Trades
-            </a>
-            <hr>
+            </a> --}}
+            {{-- <hr> --}}
             <a href="{{ route('admin.kyc') }}">
                 <svg width="24" height="24" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile_round [#1346]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2119.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M338.083123,1964.99998 C338.083123,1962.79398 336.251842,1960.99998 334,1960.99998 C331.748158,1960.99998 329.916877,1962.79398 329.916877,1964.99998 C329.916877,1967.20599 331.748158,1968.99999 334,1968.99999 C336.251842,1968.99999 338.083123,1967.20599 338.083123,1964.99998 M341.945758,1979 L340.124685,1979 C339.561214,1979 339.103904,1978.552 339.103904,1978 C339.103904,1977.448 339.561214,1977 340.124685,1977 L340.5626,1977 C341.26898,1977 341.790599,1976.303 341.523154,1975.662 C340.286989,1972.69799 337.383888,1970.99999 334,1970.99999 C330.616112,1970.99999 327.713011,1972.69799 326.476846,1975.662 C326.209401,1976.303 326.73102,1977 327.4374,1977 L327.875315,1977 C328.438786,1977 328.896096,1977.448 328.896096,1978 C328.896096,1978.552 328.438786,1979 327.875315,1979 L326.054242,1979 C324.778266,1979 323.773818,1977.857 324.044325,1976.636 C324.787453,1973.27699 327.107688,1970.79799 330.163906,1969.67299 C328.769519,1968.57399 327.875315,1966.88999 327.875315,1964.99998 C327.875315,1961.44898 331.023403,1958.61898 334.733941,1959.04198 C337.422678,1959.34798 339.650022,1961.44698 340.05323,1964.06998 C340.400296,1966.33099 339.456073,1968.39599 337.836094,1969.67299 C340.892312,1970.79799 343.212547,1973.27699 343.955675,1976.636 C344.226182,1977.857 343.221734,1979 341.945758,1979 M337.062342,1978 C337.062342,1978.552 336.605033,1979 336.041562,1979 L331.958438,1979 C331.394967,1979 330.937658,1978.552 330.937658,1978 C330.937658,1977.448 331.394967,1977 331.958438,1977 L336.041562,1977 C336.605033,1977 337.062342,1977.448 337.062342,1978" id="profile_round-[#1346]"> </path> </g> </g> </g> </g></svg>
                 User Kyc
@@ -233,6 +228,12 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu">
+            <a href="{{ route('admin.dashboard') }}">
+                <div style="text-align: center;">
+                    <span>Dashboard</span>
+                </div>
+            </a>
+
             <a href="{{ route('admin.users') }}">
                 <div style="text-align: center;">
                     <span>Users</span>
@@ -245,14 +246,9 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.withdrawals') }}">
+            <a href="{{ route('admin.kyc') }}">
                 <div style="text-align: center;">
-                    <span>Withdrawals</span>
-                </div>
-            </a>
-            <a href="{{ route('admin.trades') }}">
-                <div style="text-align: center;">
-                    <span>Trades</span>
+                    <span>User Kyc</span>
                 </div>
             </a>
 

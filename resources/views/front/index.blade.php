@@ -84,7 +84,7 @@
 
 
         <!-- preloader -->
-        {{-- <div class="loader-wrap">
+        <div class="loader-wrap">
             <div class="preloader">
                 <div class="preloader-close">x</div>
                 <div id="handle-preloader" class="handle-preloader">
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- preloader end -->
         <div class="popup" id="investment-popup"></div>
 
@@ -168,12 +168,12 @@
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="current"><a href="index.html">Home</a></li>
-                                        <li><a href="index.html">About Us</a></li>
-                                        <li><a href="index.html">Investment Plan</a></li>
-                                        <li><a href="index.html">Faq</a>
-                                        <li><a href="index.html">Legal</a></li>
-                                        <li><a href="index.html">Contact</a></li>
+                                        <li class="current"><a href="{{route('front')}}">Home</a></li>
+                                        <li><a href="{{route('front.about')}}">About Us</a></li>
+                                        <li><a href="{{route('front.plans')}}">Investment Plan</a></li>
+                                        <li><a href="{{route('front.faq')}}">Faq</a>
+                                        <li><a href="{{route('front.legal')}}">Legal</a></li>
+                                        <li><a href="{{route('front.contact')}}">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -210,7 +210,7 @@
                             <div class="logo-box">
                                 <figure class="logo"><a href="index.html"><img src="assets/images/signals2.png"  alt=""></a></figure>
                             </div>
-                            <nav class="main-menu clearfix">
+                            <nav class="main-menu clearfix mt-4">
                                 <!--Keep This Empty / Menu will come through Javascript-->
                             </nav>
                         </div>
@@ -246,7 +246,7 @@
             <div class="close-btn"><i class="fas fa-times"></i></div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="assets/images/signals2.png" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="/"><img src="assets/images/signals2.png" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
                 <div class="contact-info">
                     <h4>Contact Info</h4>
@@ -256,7 +256,7 @@
                         <li><a href="mailto:info@example.com">customercare@fundingiqsignals.com</a></li>
                     </ul>
                 </div>
-                <div class="social-links">
+                {{-- <div class="social-links">
                     <ul class="clearfix">
                         <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
@@ -264,7 +264,7 @@
                         <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
                         <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
                     </ul>
-                </div>
+                </div> --}}
             </nav>
         </div><!-- End Mobile Menu -->
 
@@ -331,6 +331,43 @@
                     </div>
                 </div>
             </div>
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [
+                        {
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "light",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
         </section>
         <!-- banner-style-two end -->
 
@@ -408,76 +445,6 @@
             </div>
         </section>
         <!-- funfact-section end -->
-
-
-        <!-- pricing-style-two -->
-        <section class="pricing-style-two bg-color-2 sec-pad">
-            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-12.png);"></div>
-            <div class="auto-container">
-                <div class="title-box">
-                    <div class="sec-title light">
-                        <h2>Top <span>Currency</span> Rates</h2>
-                    </div>
-                </div>
-                <div class="row clearfix marquee p-2">
-                        {{-- @foreach($cryptos['RAW'] as $symbol => $data)
-                            @php
-                                // Calculate the price change percentage
-                                $priceChange = $data['USD']['CHANGE24HOUR'];
-                                $priceChangeClass = $priceChange >= 0 ? 'rise' : 'fall';
-                            @endphp
-                            <div class="col-lg-3 col-md-6 col-sm-12 pricing-block" style="height: 100px">
-                                <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                    <div class="inner-box">
-                                        <div class="content-box">
-                                            <ul class="list-item clearfix">
-                                                <li>{{ $symbol }} <br />
-                                                    <span class="price-change {{ $priceChangeClass }}">
-                                                        {{ number_format($priceChange, 1) }}
-                                                    </span>
-                                                </li>
-                                                <li>${{ number_format($data['USD']['PRICE'], 2) }}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach                                       --}}
-                        {{-- <div class="row clearfix">
-                            @foreach($cryptos['RAW'] as $symbol => $data)
-                                @php
-                                    // Calculate the price change percentage
-                                    $priceChange = $data['USD']['CHANGE24HOUR'];
-                                    $priceChangeClass = $priceChange >= 0 ? 'rise' : 'fall';
-
-                                    // Get the image URL from the coin list
-                                    $imageUrl = 'https://www.cryptocompare.com' . $coinList['Data'][$symbol]['ImageUrl'];
-                                @endphp
-                                <div class="col-lg-3 col-md-6 col-sm-12 pricing-block" style="height: 100px">
-                                    <div class="pricing-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                        <div class="inner-box">
-                                            <div class="content-box">
-                                                <ul class="list-item clearfix">
-                                                    <li>
-                                                        <img src="{{ $imageUrl }}" alt="{{ $symbol }} logo" style="width: 30px; height: 30px; vertical-align: middle;">
-                                                        {{ $symbol }} <br />
-                                                        <span class="price-change {{ $priceChangeClass }}">
-                                                            {{ number_format($priceChange, 1) }}
-                                                        </span>
-                                                    </li>
-                                                    <li>${{ number_format($data['USD']['PRICE'], 2) }}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div> --}}
-                </div>
-            </div>
-        </section>
-        <!-- pricing-style-two end -->
-
 
         <!-- account-style-two -->
         <section class="account-style-two sec-pad">
@@ -1483,9 +1450,9 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list clearfix">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Investment Plan</a></li>
+                                        <li><a href="{{route('front')}}">Home</a></li>
+                                        <li><a href="{{route('front.about')}}">About Us</a></li>
+                                        <li><a href="{{route('front.plans')}}">Investment Plan</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1498,9 +1465,9 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list clearfix">
-                                        <li><a href="#">Faq</a></li>
-                                        <li><a href="#">Legal</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="{{route('front.faq')}}">Faq</a></li>
+                                        <li><a href="{{route('front.legal')}}">Legal</a></li>
+                                        <li><a href="{{route('front.contact')}}">Contact</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -106,7 +106,6 @@
                         <!-- Proof of Payment Form -->
                         <form action="{{ route('trader.fund.upload_proof', $transaction->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{$transaction->id}}
                             <div class="mb-3">
                                 <label for="proof_of_payment" class="form-label">Upload Proof of Payment</label>
                                 <input type="file" name="proof_of_payment" id="proof_of_payment" class="form-control" required>
@@ -125,11 +124,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Transaction Histories</h5>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Amount</th>
                                         <th>Method</th>
+                                        <th>Type</th>
                                         <th>Status</th>
                                         <th>Charge</th>
                                         <th>Date</th>
@@ -140,6 +140,7 @@
                                         <tr>
                                             <td>${{ number_format($confirm_transaction->amount, 2) }}</td>
                                             <td>{{ strtoupper($confirm_transaction->method) }}</td>
+                                            <td>{{ ucfirst($confirm_transaction->transaction_type) }}</td>
                                             <td>
                                                 @if($confirm_transaction->status == 'pending')
                                                     <span class="badge bg-warning text-dark">PENDING</span>
@@ -152,19 +153,17 @@
                                             <td>${{ number_format($confirm_transaction->charge, 2) }}</td>
                                             <td>{{ $confirm_transaction->transaction_date }}</td>
 
-                                            @if($confirm_transaction->status == 'requested')
-                                                <td>
+                                            <td>
+                                                @if($confirm_transaction->status == 'requested')
                                                     <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Requested</a>
-                                                </td>
-                                            @elseif($confirm_transaction->status == 'pending')
-                                                <td>
-                                                    <a href="{{ route('trader.fund.confirm', $confirm_transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
-                                                </td>
-                                            @else
-                                                <td>
+                                                @elseif($confirm_transaction->status == 'pending')
+                                                    @if($confirm_transaction->transaction_type != 'withdrawal')
+                                                        <a href="{{ route('trader.fund.confirm', $confirm_transaction->id) }}" class="btn btn-custom-primary btn-sm">View</a>
+                                                    @endif
+                                                @else
                                                     <a href="javascript:void(0);" class="btn btn-custom-primary btn-sm">Approved</a>
-                                                </td>
-                                            @endif
+                                                @endif
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
