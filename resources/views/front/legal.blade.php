@@ -26,54 +26,38 @@
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 <style>
-    .marquee {
-        overflow: hidden;
-        white-space: nowrap;
-        box-sizing: border-box;
-        animation: marquee 30s linear infinite;
-    }
-
-    @keyframes marquee {
-        0% { transform: translate(100%, 0); }
-        100% { transform: translate(-100%, 0); }
-    }
-
-    .marquee span {
-        display: inline-block;
-        padding-right: 50px;
-    }
-
-    .price-change {
-        font-weight: bold;
-    }
-
-    .price-change.rise {
-        color: green; /* Green for rise */
-    }
-
-    .price-change.fall {
-        color: red; /* Red for fall */
-    }
-
-    .popup {
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        background-color: white;
-        border: 2px solid green;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        display: none;
-        z-index: 1000;
-        transition: all 0.9s ease;
+           .card {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-    .popup.show {
-        display: block;
-        opacity: 1;
-        transform: translateY(-50%) translateY(-20px);
-    }
+        .card h2, .card h3 {
+            text-align: center;
+            color: #333;
+        }
+        .card ul {
+            padding-left: 20px;
+        }
+        .card ul li {
+            margin-bottom: 10px;
+        }
+        .card p, .card li {
+            color: #555;
+        }
+        .card-section {
+            margin-bottom: 30px;
+        }
+        .card-footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .card-footer p {
+            font-size: 14px;
+            color: #777;
+        }
 </style>
 </head>
 
@@ -284,65 +268,86 @@
         <!-- page-title end -->
 
         <!-- faq-page-section -->
-        <section class="faq-page-section">
+        <section class="faq-legal-section">
             <div class="auto-container">
                 <div class="row clearfix">
 
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <ul class="accordion-box">
-                            <li class="accordion block active-block">
-                                <div class="acc-btn active">
-                                    <div class="icon-box"><i class="flaticon-plus"></i></div>
-                                    <span>01</span>
-                                    <h4>What services does your platform offer?</h4>
-                                    <p>Our platform provides a comprehensive range of financial services, including secure funding and withdrawal transactions, real-time trading of cryptocurrency pairs, and detailed investment management.</p>
-                                </div>
-                                <div class="acc-content current">
-                                    <div class="text">
-                                        <p> We cater to both individual and institutional clients, ensuring seamless and efficient transactions through our user-friendly interface.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="accordion block">
-                                <div class="acc-btn">
-                                    <div class="icon-box"><i class="flaticon-plus"></i></div>
-                                    <span>02</span>
-                                    <h4> How can I verify my KYC (Know Your Customer) information?</h4>
-                                    <p>To verify your KYC information, log in to your account and navigate to the "Profile" section. There, you will find an option to upload your KYC documents (such as an ID, passport, or utility bill).</p>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="text">
-                                        <p> After uploading, our team will review your documents. You will be notified via email once your KYC is approved or if additional information is needed.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="accordion block">
-                                <div class="acc-btn">
-                                    <div class="icon-box"><i class="flaticon-plus"></i></div>
-                                    <span>03</span>
-                                    <h4>What should I do if I encounter an issue with a transaction?</h4>
-                                    <p>If you encounter any issues with a transaction, please contact our support team immediately. You can reach us via the "Contact Us" page on our website or by emailing support@fundingiqsignals.com</p>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="text">
-                                        <p>Provide as much detail as possible about the issue, including transaction IDs and any error messages. Our team will investigate and resolve the issue as quickly as possible.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="accordion block">
-                                <div class="acc-btn">
-                                    <div class="icon-box"><i class="flaticon-plus"></i></div>
-                                    <span>04</span>
-                                    <h4>How long does it take to process a funding transaction?</h4>
-                                    <p>Funding transactions are typically processed within 1-2 business days. However, processing times may vary depending on the payment method and any additional verification requirements.</p>
-                                </div>
-                                <div class="acc-content">
-                                    <div class="text">
-                                        <p>We will notify you via email once your funding transaction has been completed or if there are any issues.</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="card">
+                            <h2>Legal Document</h2>
+                            <p>Effective Date:12/07/12 </p>
+
+                            <div class="card-section">
+                                <h3>1. Terms of Service</h3>
+                                <p><strong>1.1 Introduction</strong><br>Welcome to [Your Website Name] (the "Site"). These Terms of Service ("Terms") govern your access to and use of our services, including our website and any other products or services we may offer (collectively, the "Services"). By accessing or using the Services, you agree to comply with and be bound by these Terms.</p>
+
+                                <p><strong>1.2 Use of Services</strong><br>By using our Services, you represent and warrant that you are at least 18 years of age or have reached the age of majority in your jurisdiction. You agree to use our Services in compliance with all applicable laws, rules, and regulations.</p>
+
+                                <p><strong>1.3 Account Registration</strong><br>You may need to create an account to access certain Services. You are responsible for maintaining the confidentiality of your account information, including your password. You agree to provide accurate and up-to-date information during registration and keep it updated at all times.</p>
+
+                                <p><strong>1.4 Prohibited Activities</strong><br>You agree not to engage in the following prohibited activities while using the Site or Services:
+                                    <ul>
+                                        <li>Violating any local, state, national, or international law or regulation.</li>
+                                        <li>Attempting to interfere with or disrupt the Services, servers, or networks connected to the Services.</li>
+                                        <li>Engaging in fraudulent or deceptive practices.</li>
+                                    </ul>
+                                </p>
+
+                                <p><strong>1.5 Modification of Terms</strong><br>We reserve the right to update or modify these Terms at any time. Changes will be effective immediately upon posting. Your continued use of the Services following any changes indicates your acceptance of the revised Terms.</p>
+                            </div>
+
+                            <div class="card-section">
+                                <h3>2. Privacy Policy</h3>
+                                <p><strong>2.1 Information Collection</strong><br>We are committed to protecting your privacy. By using our Services, you agree that we may collect, use, and store certain personal information as described in this Privacy Policy.</p>
+
+                                <p><strong>2.2 Data We Collect</strong><br>We may collect the following types of information:
+                                    <ul>
+                                        <li><strong>Personal Information:</strong> Includes name, email address, phone number, payment details, etc., that you provide during registration or transactions.</li>
+                                        <li><strong>Usage Data:</strong> Information about how you use our Services, such as IP addresses, browser type, pages viewed, and other diagnostic data.</li>
+                                    </ul>
+                                </p>
+
+                                <p><strong>2.3 How We Use Your Data</strong><br>We use your data to:
+                                    <ul>
+                                        <li>Provide, maintain, and improve our Services.</li>
+                                        <li>Process transactions and send you related information.</li>
+                                        <li>Communicate with you regarding updates, promotions, or customer support.</li>
+                                    </ul>
+                                </p>
+
+                                <p><strong>2.4 Data Protection</strong><br>We implement a variety of security measures to ensure the protection of your personal information. However, no transmission method over the internet is entirely secure, and we cannot guarantee its absolute security.</p>
+
+                                <p><strong>2.5 Third-Party Services</strong><br>We may share your information with third-party service providers to facilitate our Services. These third parties are obligated to keep your information confidential and secure.</p>
+                            </div>
+
+                            <div class="card-section">
+                                <h3>3. Disclaimer</h3>
+                                <p><strong>3.1 General Disclaimer</strong><br>The information provided on this Site is for general informational purposes only. We make no representations or warranties of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, or completeness of any information on the Site.</p>
+
+                                <p><strong>3.2 Financial Disclaimer</strong><br>[Your Website Name] is not responsible for any financial loss, profit, or damage incurred as a result of transactions carried out on our platform. Trading in financial markets involves risk, and you should not engage in trading unless you fully understand the nature of the risks involved.</p>
+
+                                <p><strong>3.3 No Guarantees</strong><br>We do not guarantee any specific outcomes regarding the performance of investments or transactions on our platform. Past performance is not indicative of future results, and you are solely responsible for any investment decisions you make.</p>
+                            </div>
+
+                            <div class="card-section">
+                                <h3>4. Refund Policy</h3>
+                                <p><strong>4.1 General Refund Policy</strong><br>All transactions, including funding and withdrawals, are final and non-refundable once completed, except in cases where refunds are required by law or agreed upon as part of a specific promotional offer.</p>
+
+                                <p><strong>4.2 Chargebacks</strong><br>Unauthorized chargebacks will be subject to investigation and may result in the suspension of your account. If you believe a transaction was unauthorized, please contact our support team immediately.</p>
+                            </div>
+
+                            <div class="card-section">
+                                <h3>5. Governing Law</h3>
+                                <p>These Terms and any disputes arising out of or related to the Services will be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.</p>
+                            </div>
+
+                            <div class="card-section">
+                                <h3>6. Contact Information</h3>
+                                <p>If you have any questions about these Terms, the Privacy Policy, or any other legal matters related to our Services, please contact us at:</p>
+                                <p><strong>Email:</strong> support@fundingiqsignals.com</p>
+                                {{-- <p><strong>Address:</strong> [Insert Address]</p> --}}
+                            </div>
+                    </div>
                     </div>
                 </div>
             </div>
